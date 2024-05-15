@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SoccerPlayers.Models.SoccerPlayer>
+
+@{
+    ViewData["Title"] = "Все футболисты";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(player => player.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(player => player.SecondName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(player => player.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(player => player.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(player => player.CommandName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(player => player.Birthday)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommandName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birthday)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

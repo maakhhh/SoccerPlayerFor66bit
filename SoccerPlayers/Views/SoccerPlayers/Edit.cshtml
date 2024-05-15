@@ -1,0 +1,78 @@
+﻿@model SoccerPlayers.Models.SoccerPlayer
+
+@{
+    ViewData["Title"] = "Редактировать футболиста";
+}
+
+<h1 class="title">@ViewData["Title"]</h1>
+
+<div class="row justify-content-md-center">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondName" class="control-label"></label>
+                <input asp-for="SecondName" class="form-control" />
+                <span asp-validation-for="SecondName" class="text-danger"></span>
+            </div>
+            <div class="form-group ">
+                <div class="form-group-selected">
+                    <label asp-for="Gender" class="control-label select-label"></label>
+                    <select asp-for="Gender">
+                        <option value="0">Мужчина</option>
+                        <option value="1">Женщина</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group ">
+                <div class="form-group-selected">
+                    <label asp-for="Country" class="control-label select-label"></label>
+                    <select asp-for="Country">
+                        <option value="0">Россия</option>
+                        <option value="1">США</option>
+                        <option value="2">Италия</option>
+                    </select>
+                </div>
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="form-group-selected">
+                    <label asp-for="CommandName" class="control-label select-label"></label>
+                    <select id="command_names" asp-for="CommandName">
+                        @foreach (var country in (List<string>)ViewData["CommandNames"])
+                        {
+                            <option value="@country">@country</option>
+                        }
+                    </select>
+                </div>
+                <label>Также можете добавить новую команду</label>
+                <div class="add_new_command">
+                    <input id="new_command_name" class="form-control new_command_name" />
+                    <button type="button" id="change_command" class="change_command">Добавить</button>
+                </div>
+                <span asp-validation-for="CommandName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Birthday" class="control-label"></label>
+                <input asp-for="Birthday" class="form-control" />
+                <span asp-validation-for="Birthday" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
